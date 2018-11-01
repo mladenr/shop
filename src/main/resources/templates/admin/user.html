@@ -34,36 +34,38 @@
             <!-- Your content goes here -->
             <div class="container">
                 <div th:fragment="content">
-                    <div class="mdl-card">
-                        <div class="mdl-card__title">
-                            <h2 class="mdl-card__title-text">Users</h2>
+                    <form th:action="@{/admin/users/add}" th:object="${user}" method="post">
+                        <div class="mdl-card">
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">Users</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="username" th:field="*{username}">
+                                    <label class="mdl-textfield__label" for="username">Username:</label>
+                                    <td class="mdl-textfield__error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="password" th:field="*{password}">
+                                    <label class="mdl-textfield__label" for="password">Password:</label>
+                                    <td class="mdl-textfield__error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="firstName" th:field="*{firstName}">
+                                    <label class="mdl-textfield__label" for="firstName">First name:</label>
+                                    <td class="mdl-textfield__error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></td>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="lastName" th:field="*{lastName}">
+                                    <label class="mdl-textfield__label" for="lastName">Last name:</label>
+                                    <td class="mdl-textfield__error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></td>
+                                </div>
+                            </div>
+                            <div class="mdl-card__actions">
+                                <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" />
+                            </div>
                         </div>
-                        <div class="mdl-card__supporting-text">
-                            <form action="#">
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" id="sample1">
-                                    <label class="mdl-textfield__label" for="sample1">Username:</label>
-                                </div>
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" id="sample1">
-                                    <label class="mdl-textfield__label" for="sample1">Password:</label>
-                                </div>
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" id="sample1">
-                                    <label class="mdl-textfield__label" for="sample1">First name:</label>
-                                </div>
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" id="sample1">
-                                    <label class="mdl-textfield__label" for="sample1">Last name:</label>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="mdl-card__actions">
-                            <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="@{/admin/users/add}">
-                                Add user
-                            </a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

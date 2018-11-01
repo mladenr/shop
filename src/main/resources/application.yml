@@ -5,7 +5,13 @@ management:
       include: '*'
 # Enabling H2 Console
 spring:
- h2:
-   console:
-     path: /h2-console
-     enabled: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:~/test
+    username: sa
+    password:
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+

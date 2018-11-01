@@ -38,6 +38,26 @@
                         <div class="mdl-card__title">
                             <h2 class="mdl-card__title-text">Users</h2>
                         </div>
+                        <div class="mdl-card__supporting-text">
+                            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                                <thead>
+                                    <tr>
+                                        <th class="mdl-data-table__cell--non-numeric">ID</th>
+                                        <th>Username</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="user : ${users}">
+                                        <td class="mdl-data-table__cell--non-numeric" th:text="${user.id}"></td>
+                                        <td th:text="${user.username}"></td>
+                                        <td th:text="${user.firstName}"></td>
+                                        <td th:text="${user.lastName}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="mdl-card__actions">
                             <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" th:href="@{/admin/users/add}">
                                 Add user
