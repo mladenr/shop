@@ -5,6 +5,7 @@ import com.sw.shop.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -18,6 +19,10 @@ public class UserService {
 
     public Iterable<User> findAll(){
         return userRepository.findAll();
+    }
+
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
     }
 
     public User save(User user){

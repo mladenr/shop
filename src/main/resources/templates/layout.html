@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Fox</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+<body>
+
+    <div class="mdl-layout__container">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded" data-upgraded=",MaterialLayout">
+
+            <!-- header -->
+            <div th:replace="fragments/header :: header"></div>
+            <!-- /header -->
+
+            <!-- header -->
+            <div th:replace="fragments/navigation :: navigation"></div>
+            <!-- /header -->
+
+            <!-- content -->
+            <main class="mdl-layout__content mdl-color--grey-100">
+                <div layout:fragment="content" class="mdl-grid demo-content"></div>
+            </main>
+            <!-- /content -->
+
+        </div>
+    </div>
+
+</body>
+</html>

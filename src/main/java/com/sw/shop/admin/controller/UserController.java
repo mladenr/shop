@@ -1,14 +1,16 @@
 package com.sw.shop.admin.controller;
 
 import com.sw.shop.domain.User;
-import com.sw.shop.repository.UserRepository;
 import com.sw.shop.service.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/admin")
@@ -33,19 +35,28 @@ public class UserController {
     }
 
     @PostMapping(path = "/users/add")
-    public String add(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+    public String add(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model, Authentication authentication) {
         if (bindingResult.hasErrors()) {
-            System.out.println("adasdadss");
             model.addAttribute("user", user);
             return "admin/user";
         }
+        user.setUc(authentication.getName());
         userService.save(user);
         return "redirect:/admin/users";
     }
 
-    @DeleteMapping(path = "/users/{id}")
+    @GetMapping(path = "/users/delete/{id}")
     public String delete(@PathVariable Long id) {
         userService.deleteById(id);
         return "admin/users";
+    }
+
+    @GetMapping(path = "/users/update/{id}")
+    public String update(@PathVariable Long id, Model model) {
+        Optional<User> user = userService.findById(id);
+        if (user.isPresent()) {
+            model.addAttribute("user", user.get());
+        }
+        return "admin/user";
     }
 }
