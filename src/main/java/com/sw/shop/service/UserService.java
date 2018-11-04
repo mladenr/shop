@@ -1,6 +1,6 @@
 package com.sw.shop.service;
 
-import com.sw.shop.domain.User;
+import com.sw.shop.domain.UserEntity;
 import com.sw.shop.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,15 +17,19 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Iterable<User> findAll(){
+    public Iterable<UserEntity> findAll(){
         return userRepository.findAll();
     }
 
-    public Optional<User> findById(Long id) {
+    public Optional<UserEntity> findById(Long id) {
         return userRepository.findById(id);
     }
 
-    public User save(User user){
+    public Optional<UserEntity> findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    public UserEntity save(UserEntity user){
         return userRepository.save(user);
     }
 

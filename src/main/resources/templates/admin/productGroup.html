@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+</head>
+<body>
+<div layout:fragment="content" class="mdl-grid">
+    <div class="mdl-cell mdl-cell--3-col mdl-shadow--2dp mdl-color--white">
+        <form th:action="@{/admin/product/groups/add}" th:object="${productGroup}" method="post">
+            <div class="mdl-grid">
+                <div th:if="${productGroup.id != null}" class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="id" th:field="*{id}" readonly>
+                    <label class="mdl-textfield__label" for="id">Id:</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <select class="mdl-textfield__input" id="homeId" th:field="*{home.id}">
+                        <option th:each="userHome : ${userHomes}" th:value="${userHome.id}" th:text="${userHome.alias}">
+                    </select>
+                    <label class="mdl-textfield__label" for="homeId">Home:</label>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="name" th:field="*{name}">
+                    <label class="mdl-textfield__label" for="name">Name:</label>
+                    <td class="mdl-textfield__error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="description" th:field="*{description}">
+                    <label class="mdl-textfield__label" for="description">Description:</label>
+                    <td class="mdl-textfield__error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></td>
+                </div>
+            </div>
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Save</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

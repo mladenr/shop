@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+</head>
+<body>
+<div layout:fragment="content" class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" th:href="@{/admin/product/groups/add}">New Product Group</a>
+    </div>
+    <div class="mdl-cell mdl-cell--12-col">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-cell--12-col">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">ID</th>
+                    <th>Home Alias</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="productGroup : ${productGroups}">
+                    <td class="mdl-data-table__cell--non-numeric" th:text="${productGroup.id}"></td>
+                    <td th:text="${productGroup.home.alias}"></td>
+                    <td th:text="${productGroup.name}"></td>
+                    <td th:text="${productGroup.description}"></td>
+                    <td>
+                        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" th:href="@{'/admin/product/groups/delete/' + ${productGroup.id}}">Delete</a>
+                        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" th:href="@{'/admin/product/groups/update/' + ${productGroup.id}}">Edit</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

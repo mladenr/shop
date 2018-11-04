@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+</head>
+<body>
+<div layout:fragment="content" class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" th:href="@{/homes/add}">New Home</a>
+    </div>
+    <div class="mdl-cell mdl-cell--12-col">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-cell--12-col">
+            <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">ID</th>
+                <th>Alias</th>
+                <th>Street Name</th>
+                <th>Street Number</th>
+                <th>Home Number</th>
+                <th>City</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="home : ${homes}">
+                <td class="mdl-data-table__cell--non-numeric" th:text="${home.id}"></td>
+                <td th:text="${home.alias}"></td>
+                <td th:text="${home.streetName}"></td>
+                <td th:text="${home.streetNumber}"></td>
+                <td th:text="${home.homeNumber}"></td>
+                <td th:text="${home.city}"></td>
+                <td>
+                    <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" th:href="@{'/homes/delete/' + ${home.id}}">Delete</a>
+                    <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" th:href="@{'/homes/update/' + ${home.id}}">Edit</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,6 +1,5 @@
 package com.sw.shop.domain;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,13 +9,14 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Data
-@Entity
-public class User extends BaseEntity implements UserDetails {
+@Entity(name = "users")
+public class UserEntity extends BaseEntity implements UserDetails {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty
@@ -37,6 +37,9 @@ public class User extends BaseEntity implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<HomeEntity> homes;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
